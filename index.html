@@ -1,61 +1,802 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
+<html lang="en" class="dark"><head><base href="https://1073841562-atari-embeds.googleusercontent.com/embeds/7b1fab8145be131e22969eee9027b9ad/inner-frame-minified.html?jsh=m%3B%2F_%2Fscs%2Fabc-static%2F_%2Fjs%2Fk%3Dgapi.lb.en.etOqPKhAhvg.O%2Fd%3D1%2Frs%3DAHpOoo-l5JrVgGKVELwC844E6riBHX86-w%2Fm%3D__features__" target="_blank">
+      <script>
+        (function() {
+          // Listen during capturing phase to intercept before <base target="_blank"> takes effect.
+          document.addEventListener('click', function(e) {
+            // Find the nearest ancestor anchor (handles nested icons, spans, svgs).
+            var el = e.target;
+            var anchor = null;
+            while (el && el !== document) {
+              if (el.tagName && el.tagName.toLowerCase() === 'a') {
+                anchor = el;
+                break;
+              }
+              el = el.parentElement;
+            }
+            if (!anchor) return;
+
+            // Only intercept relative in-page fragment links, not external links with hashes.
+            var href = anchor.getAttribute('href');
+            if (!href) return;
+            href = href.trim();
+            if (!href.startsWith('#')) return;
+
+            // Prevent default <base target="_blank"> navigation to a new blank tab.
+            e.preventDefault();
+            e.stopPropagation();
+
+            // Handle empty anchor or top anchor.
+            if (href === '#' || href === '#top') {
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+              return;
+            }
+
+            // Resolve target element by id, falling back to legacy name attribute.
+            var targetId = href.slice(1);
+            try {
+              targetId = decodeURIComponent(targetId);
+            } catch (err) {}
+
+            var targetEl = document.getElementById(targetId);
+            if (!targetEl) {
+              try {
+                var escaped = window.CSS && CSS.escape ? CSS.escape(targetId) : targetId.replace(/["\\]/g, '\\$&');
+                targetEl = document.querySelector('[name="' + escaped + '"]');
+              } catch (err) {}
+            }
+
+            // Smoothly scroll to the target within the embed and update URL hash history.
+            if (targetEl) {
+              targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              if (window.history && window.history.pushState) {
+                window.history.pushState(null, '', href);
+              }
+            }
+          }, true); // useCapture: true is critical to preempt <base target="_blank">
+        })();
+      </script>
+    
+
+
     <meta charset="UTF-8">
-    <title>My index</title>
-    <link rel="icon" type="image/png" href="https://www.google.com/favicon.ico">
-</head>
-<body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahmed Elsayed Mohamed Salem | Software Engineering Portfolio</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts: Inter & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500;700&amp;display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#e6fff5',
+                            100: '#b3ffe0',
+                            400: '#10b981',
+                            500: '#00e699',
+                            600: '#00c784',
+                            700: '#009965',
+                        },
+                        dark: {
+                            bg: '#080c14',
+                            card: '#0d1322',
+                            border: '#1e293b',
+                            accent: '#161f36'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #080c14;
+            color: #f1f5f9;
+        }
+        .code-font {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        /* Grid background pattern like in screenshot */
+        .bg-grid-pattern {
+            background-size: 30px 30px;
+            background-image: 
+                linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        }
+        /* Glow effects */
+        .glow-emerald {
+            box-shadow: 0 0 25px -5px rgba(0, 230, 153, 0.25);
+        }
+        .glow-card {
+            box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+    </style>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:Inter, sans-serif;font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:JetBrains Mono, monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.relative{position:relative}.sticky{position:sticky}.inset-0{inset:0px}.top-0{top:0px}.z-40{z-index:40}.z-50{z-index:50}.mx-auto{margin-left:auto;margin-right:auto}.my-5{margin-top:1.25rem;margin-bottom:1.25rem}.mb-1{margin-bottom:0.25rem}.mb-2{margin-bottom:0.5rem}.mb-3{margin-bottom:0.75rem}.mb-4{margin-bottom:1rem}.ml-1{margin-left:0.25rem}.mr-1{margin-right:0.25rem}.mt-1{margin-top:0.25rem}.mt-12{margin-top:3rem}.mt-4{margin-top:1rem}.line-clamp-3{overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3}.block{display:block}.inline-block{display:inline-block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-10{height:2.5rem}.h-2{height:0.5rem}.h-20{height:5rem}.h-3{height:0.75rem}.h-8{height:2rem}.min-h-screen{min-height:100vh}.w-10{width:2.5rem}.w-2{width:0.5rem}.w-3{width:0.75rem}.w-8{width:2rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-7xl{max-width:80rem}.max-w-lg{max-width:32rem}.flex-grow{flex-grow:1}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-1\.5{gap:0.375rem}.gap-10{gap:2.5rem}.gap-2{gap:0.5rem}.gap-3{gap:0.75rem}.gap-4{gap:1rem}.gap-6{gap:1.5rem}.gap-8{gap:2rem}.gap-1{gap:0.25rem}.space-y-16 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(4rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(4rem * var(--tw-space-y-reverse))}.space-y-2 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.5rem * var(--tw-space-y-reverse))}.space-y-2\.5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.625rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.625rem * var(--tw-space-y-reverse))}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.space-y-4 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1rem * var(--tw-space-y-reverse))}.space-y-5 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.25rem * var(--tw-space-y-reverse))}.space-y-6 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(1.5rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(1.5rem * var(--tw-space-y-reverse))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.whitespace-nowrap{white-space:nowrap}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.rounded-md{border-radius:0.375rem}.border{border-width:1px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-dashed{border-style:dashed}.border-brand-500\/20{border-color:rgb(0 230 153 / 0.2)}.border-brand-500\/30{border-color:rgb(0 230 153 / 0.3)}.border-slate-700{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.border-slate-800{--tw-border-opacity:1;border-color:rgb(30 41 59 / var(--tw-border-opacity, 1))}.border-slate-800\/40{border-color:rgb(30 41 59 / 0.4)}.border-slate-800\/80{border-color:rgb(30 41 59 / 0.8)}.bg-amber-500\/80{background-color:rgb(245 158 11 / 0.8)}.bg-black\/80{background-color:rgb(0 0 0 / 0.8)}.bg-brand-500{--tw-bg-opacity:1;background-color:rgb(0 230 153 / var(--tw-bg-opacity, 1))}.bg-brand-500\/10{background-color:rgb(0 230 153 / 0.1)}.bg-dark-accent\/60{background-color:rgb(22 31 54 / 0.6)}.bg-dark-bg{--tw-bg-opacity:1;background-color:rgb(8 12 20 / var(--tw-bg-opacity, 1))}.bg-dark-bg\/85{background-color:rgb(8 12 20 / 0.85)}.bg-dark-bg\/90{background-color:rgb(8 12 20 / 0.9)}.bg-dark-card{--tw-bg-opacity:1;background-color:rgb(13 19 34 / var(--tw-bg-opacity, 1))}.bg-dark-card\/40{background-color:rgb(13 19 34 / 0.4)}.bg-dark-card\/90{background-color:rgb(13 19 34 / 0.9)}.bg-emerald-500\/80{background-color:rgb(16 185 129 / 0.8)}.bg-rose-500\/80{background-color:rgb(244 63 94 / 0.8)}.bg-slate-800{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.bg-slate-900{--tw-bg-opacity:1;background-color:rgb(15 23 42 / var(--tw-bg-opacity, 1))}.bg-slate-900\/60{background-color:rgb(15 23 42 / 0.6)}.p-4{padding:1rem}.p-5{padding:1.25rem}.p-6{padding:1.5rem}.px-2{padding-left:0.5rem;padding-right:0.5rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-3\.5{padding-left:0.875rem;padding-right:0.875rem}.px-4{padding-left:1rem;padding-right:1rem}.px-5{padding-left:1.25rem;padding-right:1.25rem}.py-0\.5{padding-top:0.125rem;padding-bottom:0.125rem}.py-1\.5{padding-top:0.375rem;padding-bottom:0.375rem}.py-10{padding-top:2.5rem;padding-bottom:2.5rem}.py-16{padding-top:4rem;padding-bottom:4rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.py-2\.5{padding-top:0.625rem;padding-bottom:0.625rem}.py-3{padding-top:0.75rem;padding-bottom:0.75rem}.py-8{padding-top:2rem;padding-bottom:2rem}.px-2\.5{padding-left:0.625rem;padding-right:0.625rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.pb-2{padding-bottom:0.5rem}.pb-4{padding-bottom:1rem}.pb-5{padding-bottom:1.25rem}.pt-1{padding-top:0.25rem}.pt-2{padding-top:0.5rem}.pt-4{padding-top:1rem}.pt-6{padding-top:1.5rem}.pt-8{padding-top:2rem}.pt-5{padding-top:1.25rem}.text-center{text-align:center}.font-mono{font-family:JetBrains Mono, monospace}.text-2xl{font-size:1.5rem;line-height:2rem}.text-3xl{font-size:1.875rem;line-height:2.25rem}.text-4xl{font-size:2.25rem;line-height:2.5rem}.text-base{font-size:1rem;line-height:1.5rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-sm{font-size:0.875rem;line-height:1.25rem}.text-xs{font-size:0.75rem;line-height:1rem}.text-\[10px\]{font-size:10px}.text-\[11px\]{font-size:11px}.font-bold{font-weight:700}.font-extrabold{font-weight:800}.font-medium{font-weight:500}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.leading-none{line-height:1}.leading-relaxed{line-height:1.625}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wide{letter-spacing:0.025em}.tracking-widest{letter-spacing:0.1em}.text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.text-brand-500{--tw-text-opacity:1;color:rgb(0 230 153 / var(--tw-text-opacity, 1))}.text-slate-100{--tw-text-opacity:1;color:rgb(241 245 249 / var(--tw-text-opacity, 1))}.text-slate-200{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.text-slate-300{--tw-text-opacity:1;color:rgb(203 213 225 / var(--tw-text-opacity, 1))}.text-slate-400{--tw-text-opacity:1;color:rgb(148 163 184 / var(--tw-text-opacity, 1))}.text-slate-500{--tw-text-opacity:1;color:rgb(100 116 139 / var(--tw-text-opacity, 1))}.text-slate-600{--tw-text-opacity:1;color:rgb(71 85 105 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-lg{--tw-shadow:0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 10px 15px -3px var(--tw-shadow-color), 0 4px 6px -4px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-md{--tw-shadow:0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-brand-500\/20{--tw-shadow-color:rgb(0 230 153 / 0.2);--tw-shadow:var(--tw-shadow-colored)}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.duration-300{transition-duration:300ms}.selection\:bg-brand-500 *::selection{--tw-bg-opacity:1;background-color:rgb(0 230 153 / var(--tw-bg-opacity, 1))}.selection\:text-black *::selection{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.selection\:bg-brand-500::selection{--tw-bg-opacity:1;background-color:rgb(0 230 153 / var(--tw-bg-opacity, 1))}.selection\:text-black::selection{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.hover\:border-slate-700:hover{--tw-border-opacity:1;border-color:rgb(51 65 85 / var(--tw-border-opacity, 1))}.hover\:bg-brand-600:hover{--tw-bg-opacity:1;background-color:rgb(0 199 132 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-700:hover{--tw-bg-opacity:1;background-color:rgb(51 65 85 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-800:hover{--tw-bg-opacity:1;background-color:rgb(30 41 59 / var(--tw-bg-opacity, 1))}.hover\:bg-slate-800\/80:hover{background-color:rgb(30 41 59 / 0.8)}.hover\:text-brand-500:hover{--tw-text-opacity:1;color:rgb(0 230 153 / var(--tw-text-opacity, 1))}.hover\:text-slate-200:hover{--tw-text-opacity:1;color:rgb(226 232 240 / var(--tw-text-opacity, 1))}.hover\:text-white:hover{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.hover\:text-rose-400:hover{--tw-text-opacity:1;color:rgb(251 113 133 / var(--tw-text-opacity, 1))}.focus\:border-brand-500:focus{--tw-border-opacity:1;border-color:rgb(0 230 153 / var(--tw-border-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.group:hover .group-hover\:bg-brand-500{--tw-bg-opacity:1;background-color:rgb(0 230 153 / var(--tw-bg-opacity, 1))}.group:hover .group-hover\:text-black{--tw-text-opacity:1;color:rgb(0 0 0 / var(--tw-text-opacity, 1))}.group:hover .group-hover\:text-brand-500{--tw-text-opacity:1;color:rgb(0 230 153 / var(--tw-text-opacity, 1))}@media (min-width: 640px){.sm\:flex{display:flex}.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:px-6{padding-left:1.5rem;padding-right:1.5rem}.sm\:text-3xl{font-size:1.875rem;line-height:2.25rem}.sm\:text-5xl{font-size:3rem;line-height:1}.sm\:text-lg{font-size:1.125rem;line-height:1.75rem}.sm\:text-sm{font-size:0.875rem;line-height:1.25rem}}@media (min-width: 768px){.md\:inline{display:inline}.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-end{align-items:flex-end}}@media (min-width: 1024px){.lg\:col-span-5{grid-column:span 5 / span 5}.lg\:col-span-7{grid-column:span 7 / span 7}.lg\:grid-cols-12{grid-template-columns:repeat(12, minmax(0, 1fr))}.lg\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.lg\:px-8{padding-left:2rem;padding-right:2rem}}</style></head>
+<body class="bg-dark-bg text-slate-200 min-h-screen flex flex-col bg-grid-pattern selection:bg-brand-500 selection:text-black">
 
-    <center>
-        <h1>
-            <i><font color="red" face="Arial, sans-serif">This my First website</font></i>
-        </h1>
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-40 w-full border-b border-slate-800/80 bg-dark-bg/85 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            
+            <!-- Logo & Title -->
+            <a href="#overview" class="flex items-center gap-3 group">
+                <div class="w-10 h-10 rounded-lg bg-brand-500/10 border border-brand-500/30 flex items-center justify-center text-brand-500 font-mono font-bold text-lg group-hover:bg-brand-500 group-hover:text-black transition-all duration-300">
+                    &lt;AS/&gt;
+                </div>
+                <div>
+                    <h1 class="font-bold text-slate-100 text-base sm:text-lg leading-tight group-hover:text-brand-500 transition-colors">
+                        Ahmed Elsayed Mohamed Salem
+                    </h1>
+                    <p class="text-xs text-slate-400 font-mono">Software Engineering Student</p>
+                </div>
+            </a>
 
-        <p>
-            <b><font size="5">this text is bold with size 5 The standard Lorem Ipsum passage</font></b><br>
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt<br>
-            mollit anim id est laborum."
-        </p>
-    </center>
+            <!-- Navigation Links -->
+            <nav class="hidden md:flex items-center gap-8 text-sm font-medium">
+                <a href="#overview" class="text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-compass text-xs"></i> Overview
+                </a>
+                <a href="#assignments" class="text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-folder-open text-xs"></i> Assignments 
+                    <span id="nav-count" class="ml-1 px-2 py-0.5 text-xs font-mono bg-brand-500/10 text-brand-500 rounded-full border border-brand-500/20">1</span>
+                </a>
+                <a href="#github-guide" class="text-slate-300 hover:text-brand-500 transition-colors flex items-center gap-2">
+                    <i class="fa-solid fa-book-bookmark text-xs"></i> How to Upload
+                </a>
+            </nav>
 
-    <hr>
+            <!-- Action Buttons -->
+            <div class="flex items-center gap-3">
+                <button onclick="openModal()" class="hidden sm:flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-black font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-all duration-200 shadow-lg shadow-brand-500/20">
+                    <i class="fa-solid fa-plus"></i> Add Assignment
+                </button>
+                <button onclick="exportHTML()" title="Export &amp; Save Static HTML file for GitHub Pages" class="flex items-center gap-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 text-slate-200 text-xs sm:text-sm px-3.5 py-2.5 rounded-lg transition-all">
+                    <i class="fa-solid fa-download text-brand-500"></i>
+                    <span class="hidden md:inline">Save HTML for GitHub</span>
+                </button>
+            </div>
+        </div>
+    </header>
 
-    <h2><u>TASKS</u></h2>
+    <!-- Main Content Container -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-16">
 
-    <ul type="square">
-        <li><b>first task</b></li>
-        <li style="color: red;">
-            second task
-            <ol type="i" style="color: blue;">
-                <li>
-                    <b>nested item</b>
-                    <ul type="square" style="color: green;">
-                        <li><b>nested item</b></li>
-                        <li><b>nested item</b></li>
-                    </ul>
-                </li>
-                <li><b>nested item</b></li>
-            </ol>
-        </li>
-       <li>
-        <b><u>third task==&gt;&gt;</u> <a href="page2.html#end">click here</a></b>
-       </li>
-    </ul>
+        <!-- Hero / Overview Section -->
+        <section id="overview" class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center pt-4">
+            
+            <!-- Hero Left Content -->
+            <div class="lg:col-span-7 space-y-6">
+                <!-- Badge -->
+                <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-500 text-xs font-mono font-semibold tracking-wide">
+                    <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
+                    WEB DESIGN &amp; DEVELOPMENT • STUDENT PORTFOLIO
+                </div>
 
-    <hr>
+                <!-- Main Heading -->
+                <div class="space-y-2">
+                    <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight leading-none">
+                        Ahmed Elsayed <br>
+                        <span class="text-brand-500">Mohamed Salem</span>
+                    </h2>
+                    <p class="text-lg font-mono text-slate-300 font-medium pt-1">
+                        Software Engineering Student
+                    </p>
+                </div>
 
-    <h3>Assignment 2</h3>
-    <p>
-        <b>Task 2 (Table):</b> <a href="table.html">Open table.html</a>
-    </p>
+                <!-- Paragraph Description -->
+                <p class="text-slate-400 text-base leading-relaxed max-w-2xl">
+                    Welcome to my academic coursework portfolio. This website is dedicated to organizing, hosting, and showcasing my university assignments and lab submissions—primarily for the <span class="text-slate-200 font-semibold">Web Design and Development</span> course—deployed via <span class="text-brand-500 font-mono">GitHub Pages</span>.
+                </p>
 
-    <p>
-        <b>Click the Google logo below to open Google in a new tab:</b>
-    </p>
-    <a href="https://www.google.com" target="_blank">
-        <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png" alt="Google" width="180">
-    </a>
+                <!-- Action Buttons -->
+                <div class="flex flex-wrap gap-3 pt-2">
+                    <a href="#assignments" class="px-5 py-3 rounded-xl bg-brand-500 hover:bg-brand-600 text-black font-semibold text-sm flex items-center gap-2 transition-all shadow-lg shadow-brand-500/20">
+                        <i class="fa-regular fa-folder-open"></i> View Assignments
+                    </a>
+                    <button onclick="openModal()" class="px-5 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-slate-200 text-sm font-semibold flex items-center gap-2 transition-all">
+                        <i class="fa-solid fa-circle-plus text-brand-500"></i> Add New Assignment
+                    </button>
+                    <a href="#github-guide" class="px-5 py-3 rounded-xl bg-slate-900/60 hover:bg-slate-800/80 border border-slate-800 text-slate-400 hover:text-slate-200 text-sm font-semibold flex items-center gap-2 transition-all">
+                        GitHub Upload Guide
+                    </a>
+                </div>
+            </div>
 
-</body>
-</html>
+            <!-- Hero Right Card (IDE / JSON Terminal Style) -->
+            <div class="lg:col-span-5">
+                <div class="rounded-2xl border border-slate-800 bg-dark-card/90 p-5 glow-card backdrop-blur-md relative overflow-hidden">
+                    <!-- Top Window Controls bar -->
+                    <div class="flex items-center justify-between pb-4 border-b border-slate-800/80">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-rose-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-amber-500/80 inline-block"></span>
+                            <span class="w-3 h-3 rounded-full bg-emerald-500/80 inline-block"></span>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400 flex items-center gap-1.5">
+                            <i class="fa-solid fa-code text-brand-500"></i> portfolio_status.json
+                        </span>
+                    </div>
+
+                    <!-- Inner Metrics Box -->
+                    <div class="grid grid-cols-2 gap-4 my-5">
+                        <div class="p-4 rounded-xl bg-dark-accent/60 border border-slate-800">
+                            <p class="text-xs font-mono text-slate-400 mb-1">Uploaded Assignments</p>
+                            <span id="hero-assignments-count" class="text-3xl font-extrabold text-brand-500 font-mono">1</span>
+                        </div>
+                        <div class="p-4 rounded-xl bg-dark-accent/60 border border-slate-800">
+                            <p class="text-xs font-mono text-slate-400 mb-1">Active Subjects</p>
+                            <span id="hero-subjects-count" class="text-3xl font-extrabold text-brand-500 font-mono">1</span>
+                        </div>
+                    </div>
+
+                    <!-- Metadata Details list -->
+                    <div class="space-y-2.5 font-mono text-xs pt-1">
+                        <div class="flex justify-between py-1.5 border-b border-slate-800/40">
+                            <span class="text-slate-400">Student:</span>
+                            <span class="text-slate-200 font-bold">Ahmed Elsayed Mohamed Salem</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-800/40">
+                            <span class="text-slate-400">Department:</span>
+                            <span class="text-brand-500">Software Engineering</span>
+                        </div>
+                        <div class="flex justify-between py-1.5 border-b border-slate-800/40">
+                            <span class="text-slate-400">Primary Course:</span>
+                            <span class="text-brand-500">Web Design &amp; Development</span>
+                        </div>
+                        <div class="flex justify-between py-1.5">
+                            <span class="text-slate-400">Hosting:</span>
+                            <span class="text-slate-200">GitHub Pages</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Course Assignments & Submissions Section -->
+        <section id="assignments" class="space-y-6 pt-6">
+            
+            <!-- Section Title Header -->
+            <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 border-b border-slate-800/80 pb-5">
+                <div>
+                    <div class="text-xs font-mono text-brand-500 uppercase tracking-widest mb-1 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group"></i> Coursework Repository
+                    </div>
+                    <h3 class="text-2xl sm:text-3xl font-bold text-white">Course Assignments &amp; Submissions</h3>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button onclick="openModal()" class="bg-brand-500 hover:bg-brand-600 text-black font-semibold text-xs sm:text-sm px-4 py-2.5 rounded-lg transition-all flex items-center gap-2">
+                        <i class="fa-solid fa-plus"></i> Add Assignment
+                    </button>
+                </div>
+            </div>
+
+            <!-- Subject Filter Tabs -->
+            <div class="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none" id="subject-filters">
+                <button onclick="filterBySubject('All')" class="px-4 py-2 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition-all bg-brand-500 text-black font-semibold shadow-md shadow-brand-500/20">
+                    All (1)
+                </button>
+            
+                <button onclick="filterBySubject('Web Design &amp; Development')" class="px-4 py-2 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition-all bg-dark-card border border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700">
+                    Web Design &amp; Development 
+                </button>
+            </div>
+
+            <!-- Assignments Grid List -->
+            <div id="assignments-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-2">
+                <div class="rounded-2xl bg-dark-card border border-slate-800 p-5 flex flex-col justify-between hover:border-slate-700 transition-all duration-200 group">
+                    <div class="space-y-3">
+                        <!-- Top Metadata -->
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-brand-500/10 border border-brand-500/20 text-brand-500 text-[11px] font-mono font-medium">
+                                Web Design &amp; Development
+                            </span>
+                            <span class="text-[11px] font-mono text-slate-400">
+                                <i class="fa-regular fa-calendar mr-1"></i> 2026-10-28
+                            </span>
+                        </div>
+
+                        <!-- Assignment Title -->
+                        <h4 class="text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors">
+                            Assignment 1
+                        </h4>
+
+                        <!-- Description -->
+                        <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                            No detailed description provided.
+                        </p>
+                    </div>
+
+                    <!-- Footer Action Links -->
+                    <div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            
+                                <a href="https://ahmedelsayed1762007-web.github.io/web-portfolio8/" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-brand-500"></i> Demo
+                                </a>
+                            
+                            
+                                <a href="https://github.com/ahmedelsayed1762007-web/web-portfolio8.git" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-brands fa-github text-[11px]"></i> Code
+                                </a>
+                            
+                        </div>
+
+                        <!-- Edit & Delete -->
+                        <div class="flex items-center gap-1">
+                            <button onclick="editAssignment('1793193107630')" title="Edit Assignment" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-pen-to-square text-xs"></i>
+                            </button>
+                            <button onclick="deleteAssignment('1793193107630')" title="Delete Assignment" class="w-8 h-8 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Empty State Container -->
+            <div id="empty-state" class="text-center py-16 bg-dark-card/40 rounded-2xl border border-dashed border-slate-800 hidden">
+                <i class="fa-solid fa-folder-open text-4xl text-slate-600 mb-3"></i>
+                <h4 class="text-lg font-semibold text-slate-300">No Assignments Uploaded Yet</h4>
+                <p class="text-slate-500 text-sm mt-1 mb-4">Click below to add your first assignment submission.</p>
+                <button onclick="openModal()" class="bg-brand-500 text-black font-semibold text-xs px-4 py-2 rounded-lg">
+                    <i class="fa-solid fa-plus mr-1"></i> Add Assignment
+                </button>
+            </div>
+        </section>
+
+        <!-- GitHub Upload & Deployment Guide Section -->
+        <section id="github-guide" class="space-y-6 pt-8 border-t border-slate-800/80">
+            <div class="max-w-3xl">
+                <div class="text-xs font-mono text-brand-500 uppercase tracking-widest mb-1">
+                    <i class="fa-solid fa-cloud-arrow-up"></i> Documentation
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">How to Deploy &amp; Update on GitHub Pages</h3>
+                <p class="text-slate-400 text-sm">Follow these simple steps to host this portfolio and keep your added assignments synced online for free.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <!-- Step 1 -->
+                <div class="p-5 rounded-2xl bg-dark-card border border-slate-800 space-y-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/30 font-mono font-bold text-brand-500 flex items-center justify-center text-sm">
+                        01
+                    </div>
+                    <h4 class="font-bold text-slate-200">Create GitHub Repo</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Create a new public repository named <code class="text-brand-500">web-portfolio</code> or <code class="text-brand-500">username.github.io</code> on your GitHub account.</p>
+                </div>
+
+                <!-- Step 2 -->
+                <div class="p-5 rounded-2xl bg-dark-card border border-slate-800 space-y-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/30 font-mono font-bold text-brand-500 flex items-center justify-center text-sm">
+                        02
+                    </div>
+                    <h4 class="font-bold text-slate-200">Add &amp; Save Assignments</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Use the "+ Add Assignment" button to add assignments, then click **"Save HTML for GitHub"** to download the updated <code class="text-slate-200">index.html</code> file.</p>
+                </div>
+
+                <!-- Step 3 -->
+                <div class="p-5 rounded-2xl bg-dark-card border border-slate-800 space-y-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-500/10 border border-brand-500/30 font-mono font-bold text-brand-500 flex items-center justify-center text-sm">
+                        03
+                    </div>
+                    <h4 class="font-bold text-slate-200">Enable Pages</h4>
+                    <p class="text-xs text-slate-400 leading-relaxed">Upload <code class="text-slate-200">index.html</code> to your repo. Go to Repository <strong>Settings &gt; Pages</strong> and set Branch to <code class="text-brand-500">main</code>.</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="border-t border-slate-800/80 bg-dark-bg/90 py-8 mt-12 text-center text-xs text-slate-500 font-mono">
+        <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p>© <span id="year">2026</span> Ahmed Elsayed Mohamed Salem. All Rights Reserved.</p>
+            <p class="flex items-center gap-2">
+                <span>Built for Web Design &amp; Development</span>
+                <span>•</span>
+                <span class="text-brand-500">Software Engineering</span>
+            </p>
+        </div>
+    </footer>
+
+    <!-- Add/Edit Assignment Modal -->
+    <div id="assignment-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm hidden">
+        <div class="bg-dark-card border border-slate-700 w-full max-w-lg rounded-2xl shadow-2xl p-6 relative space-y-5 animate-in fade-in zoom-in duration-200">
+            
+            <!-- Modal Header -->
+            <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                    <i class="fa-solid fa-file-circle-plus text-brand-500"></i>
+                    <span id="modal-title-text">Add New Assignment</span>
+                </h3>
+                <button onclick="closeModal()" class="text-slate-400 hover:text-white transition-colors">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+            </div>
+
+            <!-- Form -->
+            <form id="assignment-form" onsubmit="handleFormSubmit(event)" class="space-y-4">
+                <input type="hidden" id="assignment-id" value="">
+                
+                <!-- Title -->
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">Assignment Title *</label>
+                    <input type="text" id="input-title" required="" placeholder="e.g. Lab 1: HTML &amp; CSS Basics" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-500">
+                </div>
+
+                <!-- Subject & Date Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-1">Subject / Course *</label>
+                        <select id="input-subject" required="" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-500">
+                            <option value="Web Design &amp; Development">Web Design &amp; Development</option>
+                            <option value="Software Engineering">Software Engineering</option>
+                            <option value="Data Structures">Data Structures</option>
+                            <option value="Database Systems">Database Systems</option>
+                            <option value="Computer Networks">Computer Networks</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-1">Submission Date *</label>
+                        <input type="date" id="input-date" required="" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-500">
+                    </div>
+                </div>
+
+                <!-- Status Tag -->
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">Status</label>
+                    <select id="input-status" class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-500">
+                        <option value="Completed">Completed</option>
+                        <option value="In Progress">In Progress</option>
+                        <option value="Submitted">Submitted</option>
+                    </select>
+                </div>
+
+                <!-- Description -->
+                <div>
+                    <label class="block text-xs font-mono text-slate-300 mb-1">Description / Notes</label>
+                    <textarea id="input-desc" rows="3" placeholder="Brief summary of tasks done in this assignment..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-500"></textarea>
+                </div>
+
+                <!-- Links Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-1">Live Demo / Preview Link</label>
+                        <input type="url" id="input-demo" placeholder="https://..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-500">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-mono text-slate-300 mb-1">File / Code Repository URL</label>
+                        <input type="url" id="input-repo" placeholder="https://github.com/..." class="w-full bg-slate-900 border border-slate-700 rounded-lg px-3.5 py-2.5 text-sm text-slate-100 focus:outline-none focus:border-brand-500">
+                    </div>
+                </div>
+
+                <!-- Modal Actions -->
+                <div class="flex items-center justify-end gap-3 pt-4 border-t border-slate-800">
+                    <button type="button" onclick="closeModal()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 hover:bg-slate-700 text-xs font-semibold">
+                        Cancel
+                    </button>
+                    <button type="submit" class="px-5 py-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-black text-xs font-semibold">
+                        Save Assignment
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Application Script -->
+    <script>
+        // Initial sample data if empty
+        const initialAssignments = [
+            {
+                id: '1',
+                title: 'Assignment 1: Responsive Layout & Portfolio Concept',
+                subject: 'Web Design & Development',
+                date: '2026-10-20',
+                status: 'Completed',
+                description: 'Built a responsive single-page student portfolio application utilizing HTML, Tailwind CSS, and interactive JavaScript with local persistence.',
+                demoUrl: '#',
+                repoUrl: 'https://github.com'
+            }
+        ];
+
+        // State Management
+        let assignments = [];
+        let selectedSubject = 'All';
+
+        // Load data on load
+        window.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('year').textContent = new Date().getFullYear();
+            
+            // Try loading from Embedded HTML script storage first, then localStorage
+            const embeddedData = document.getElementById('embedded-data');
+            if (embeddedData && embeddedData.textContent.trim()) {
+                try {
+                    assignments = JSON.parse(embeddedData.textContent);
+                } catch(e) {
+                    assignments = initialAssignments;
+                }
+            } else {
+                const stored = localStorage.getItem('ahmed_portfolio_assignments');
+                if (stored) {
+                    try {
+                        assignments = JSON.parse(stored);
+                    } catch(e) {
+                        assignments = initialAssignments;
+                    }
+                } else {
+                    assignments = initialAssignments;
+                }
+            }
+
+            renderApp();
+        });
+
+        // Save State
+        function saveState() {
+            localStorage.setItem('ahmed_portfolio_assignments', JSON.stringify(assignments));
+            renderApp();
+        }
+
+        // Render UI
+        function renderApp() {
+            renderMetrics();
+            renderFilters();
+            renderAssignments();
+        }
+
+        // Render Header & Hero Metrics
+        function renderMetrics() {
+            const count = assignments.length;
+            document.getElementById('nav-count').textContent = count;
+            document.getElementById('hero-assignments-count').textContent = count;
+
+            // Unique subjects count
+            const uniqueSubjects = new Set(assignments.map(a => a.subject));
+            document.getElementById('hero-subjects-count').textContent = uniqueSubjects.size;
+        }
+
+        // Render Subject Filters
+        function renderFilters() {
+            const container = document.getElementById('subject-filters');
+            const subjects = ['All', ...new Set(assignments.map(a => a.subject))];
+
+            container.innerHTML = subjects.map(sub => `
+                <button 
+                    onclick="filterBySubject('${sub}')" 
+                    class="px-4 py-2 rounded-xl text-xs font-mono font-medium whitespace-nowrap transition-all ${
+                        selectedSubject === sub 
+                        ? 'bg-brand-500 text-black font-semibold shadow-md shadow-brand-500/20' 
+                        : 'bg-dark-card border border-slate-800 text-slate-400 hover:text-slate-200 hover:border-slate-700'
+                    }"
+                >
+                    ${sub} ${sub === 'All' ? `(${assignments.length})` : ''}
+                </button>
+            `).join('');
+        }
+
+        function filterBySubject(sub) {
+            selectedSubject = sub;
+            renderApp();
+        }
+
+        // Render Cards Grid
+        function renderAssignments() {
+            const grid = document.getElementById('assignments-grid');
+            const emptyState = document.getElementById('empty-state');
+
+            const filtered = selectedSubject === 'All' 
+                ? assignments 
+                : assignments.filter(a => a.subject === selectedSubject);
+
+            if (filtered.length === 0) {
+                grid.innerHTML = '';
+                emptyState.classList.remove('hidden');
+                return;
+            }
+
+            emptyState.classList.add('hidden');
+            grid.innerHTML = filtered.map(item => `
+                <div class="rounded-2xl bg-dark-card border border-slate-800 p-5 flex flex-col justify-between hover:border-slate-700 transition-all duration-200 group">
+                    <div class="space-y-3">
+                        <!-- Top Metadata -->
+                        <div class="flex items-center justify-between gap-2">
+                            <span class="px-2.5 py-1 rounded-md bg-brand-500/10 border border-brand-500/20 text-brand-500 text-[11px] font-mono font-medium">
+                                ${escapeHtml(item.subject)}
+                            </span>
+                            <span class="text-[11px] font-mono text-slate-400">
+                                <i class="fa-regular fa-calendar mr-1"></i> ${escapeHtml(item.date)}
+                            </span>
+                        </div>
+
+                        <!-- Assignment Title -->
+                        <h4 class="text-base font-bold text-slate-100 group-hover:text-brand-500 transition-colors">
+                            ${escapeHtml(item.title)}
+                        </h4>
+
+                        <!-- Description -->
+                        <p class="text-xs text-slate-400 leading-relaxed line-clamp-3">
+                            ${escapeHtml(item.description || 'No detailed description provided.')}
+                        </p>
+                    </div>
+
+                    <!-- Footer Action Links -->
+                    <div class="pt-5 mt-4 border-t border-slate-800/80 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            ${item.demoUrl ? `
+                                <a href="${escapeHtml(item.demoUrl)}" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px] text-brand-500"></i> Demo
+                                </a>
+                            ` : ''}
+                            ${item.repoUrl ? `
+                                <a href="${escapeHtml(item.repoUrl)}" target="_blank" class="px-3 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono flex items-center gap-1.5 transition-colors">
+                                    <i class="fa-brands fa-github text-[11px]"></i> Code
+                                </a>
+                            ` : ''}
+                        </div>
+
+                        <!-- Edit & Delete -->
+                        <div class="flex items-center gap-1">
+                            <button onclick="editAssignment('${item.id}')" title="Edit Assignment" class="w-8 h-8 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-pen-to-square text-xs"></i>
+                            </button>
+                            <button onclick="deleteAssignment('${item.id}')" title="Delete Assignment" class="w-8 h-8 rounded-lg text-slate-400 hover:text-rose-400 hover:bg-slate-800 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-trash-can text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // Modal Controls
+        function openModal(editId = null) {
+            const modal = document.getElementById('assignment-modal');
+            const form = document.getElementById('assignment-form');
+            const titleText = document.getElementById('modal-title-text');
+
+            form.reset();
+            document.getElementById('assignment-id').value = '';
+
+            if (editId) {
+                const item = assignments.find(a => a.id === editId);
+                if (item) {
+                    titleText.textContent = 'Edit Assignment';
+                    document.getElementById('assignment-id').value = item.id;
+                    document.getElementById('input-title').value = item.title;
+                    document.getElementById('input-subject').value = item.subject;
+                    document.getElementById('input-date').value = item.date;
+                    document.getElementById('input-status').value = item.status || 'Completed';
+                    document.getElementById('input-desc').value = item.description || '';
+                    document.getElementById('input-demo').value = item.demoUrl || '';
+                    document.getElementById('input-repo').value = item.repoUrl || '';
+                }
+            } else {
+                titleText.textContent = 'Add New Assignment';
+                document.getElementById('input-date').value = new Date().toISOString().split('T')[0];
+            }
+
+            modal.classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('assignment-modal').classList.add('hidden');
+        }
+
+        // Form Submit
+        function handleFormSubmit(e) {
+            e.preventDefault();
+            const id = document.getElementById('assignment-id').value;
+            const newItem = {
+                id: id || Date.now().toString(),
+                title: document.getElementById('input-title').value.trim(),
+                subject: document.getElementById('input-subject').value,
+                date: document.getElementById('input-date').value,
+                status: document.getElementById('input-status').value,
+                description: document.getElementById('input-desc').value.trim(),
+                demoUrl: document.getElementById('input-demo').value.trim(),
+                repoUrl: document.getElementById('input-repo').value.trim(),
+            };
+
+            if (id) {
+                assignments = assignments.map(a => a.id === id ? newItem : a);
+            } else {
+                assignments.unshift(newItem);
+            }
+
+            saveState();
+            closeModal();
+        }
+
+        function editAssignment(id) {
+            openModal(id);
+        }
+
+        function deleteAssignment(id) {
+            if (confirm('Are you sure you want to delete this assignment entry?')) {
+                assignments = assignments.filter(a => a.id !== id);
+                saveState();
+            }
+        }
+
+        // Export Static HTML with Embedded Data for GitHub Pages Persistence
+        function exportHTML() {
+            let docString = document.documentElement.outerHTML;
+
+            // Update or inject embedded dataset tag
+            const dataScript = `<script id="embedded-data" type="application/json">[{"id":"1793193107630","title":"Assignment 1","subject":"Web Design & Development","date":"2026-10-28","status":"Completed","description":"","demoUrl":"https://ahmedelsayed1762007-web.github.io/web-portfolio8/","repoUrl":"https://github.com/ahmedelsayed1762007-web/web-portfolio8.git"}]</script>
+    <script id="embedded-data" type="application/json">[]</script>
+
+
+      <script>
+        (function() {
+          // The root element's background fills the whole page. As in CSS,
+          // the body's background is used when the root element has none.
+          function getPageBackgroundColor() {
+            var docStyle = window.getComputedStyle(document.documentElement);
+            var color = docStyle.backgroundColor;
+            if ((color === 'rgba(0, 0, 0, 0)' || color === 'transparent') &&
+                docStyle.backgroundImage === 'none' && document.body) {
+              color = window.getComputedStyle(document.body).backgroundColor;
+            }
+            return color || '';
+          }
+
+          var lastReportedColor = '';
+          function reportBackgroundColor() {
+            try {
+              var color = getPageBackgroundColor();
+              if (color === lastReportedColor) return;
+              lastReportedColor = color;
+              window.parent.postMessage({
+                type: 'ATARI_CODE_EMBED_BACKGROUND_COLOR',
+                backgroundColor: color
+              }, '*');
+            } catch (e) {}
+          }
+
+          // The page background usually changes through an attribute on html
+          // or body (for example a theme class), a style sheet in head, or the
+          // system color scheme.
+          if (typeof MutationObserver !== 'undefined') {
+            var observer = new MutationObserver(reportBackgroundColor);
+            observer.observe(document.documentElement, {attributes: true});
+            if (document.body) {
+              observer.observe(document.body, {attributes: true});
+            }
+            if (document.head) {
+              observer.observe(document.head, {
+                attributes: true,
+                childList: true,
+                subtree: true,
+                characterData: true
+              });
+            }
+          }
+          var colorSchemeQuery =
+              window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)');
+          if (colorSchemeQuery && colorSchemeQuery.addEventListener) {
+            colorSchemeQuery.addEventListener('change', reportBackgroundColor);
+          }
+          window.addEventListener('load', reportBackgroundColor);
+          window.addEventListener('transitionend', reportBackgroundColor);
+          window.addEventListener('animationend', reportBackgroundColor);
+          reportBackgroundColor();
+        })();
+      </script>
+    </body></html>
